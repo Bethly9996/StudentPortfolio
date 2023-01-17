@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import Axios from "axios";
 
@@ -26,6 +26,9 @@ const App = () => {
   const [password, setPassword] = useState("");
   const [loginStatus, setLoginStatus] = useState("");
 
+  //sending cookies usiong axios
+  Axios.defaults.withCredentials = true;
+
   //sending HTTP requests to "/login" endpoint using Axios
 
   const login = () => {
@@ -40,6 +43,17 @@ const App = () => {
       }
     });
   };
+
+  //checking already logged users using axios.
+  //creating a useEffect to run whenever we refresh the page.
+
+  useEffect(() => {
+    Axios.get("http://localhost:3001/login").then((response) => {
+      if(response.data.loggedIn == true) {
+        setRole(response.data.user[0].role);
+      }
+    });
+  }, []);
 
   return (
     <div className="App">
