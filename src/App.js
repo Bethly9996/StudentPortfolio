@@ -47,13 +47,13 @@ const App = () => {
   //checking already logged users using axios.
   //creating a useEffect to run whenever we refresh the page.
 
-  useEffect(() => {
-    Axios.get("http://localhost:3001/login").then((response) => {
-      if(response.data.loggedIn == true) {
-        setRole(response.data.user[0].role);
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   Axios.get("http://localhost:3001/login").then((response) => {
+  //     if(response.data.loggedIn === true) {
+  //       setRole(response.data.user[0].role);
+  //     }
+  //   });
+  // }, []);
 
   return (
     <div className="App">
